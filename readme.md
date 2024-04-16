@@ -14,7 +14,7 @@ $ composer require logicly/easy-oauth-client
 
 Publish the config
 ```bash
-$ php artisan vendor:publish --provider="Logicly\EasyOAuthClient\EasyOAuthClientServiceProvider"
+$ php artisan provider:publish --provider="Logicly\EasyOAuthClient\EasyOAuthClientServiceProvider"
 ```
 Configure the config using the provided example.
 
@@ -24,7 +24,7 @@ use Logicly\EasyOAuthClient\Client;
 
 // ...
 
-$oAuthClient = new Client("vendorname");
+$oAuthClient = new Client("providername");
 
 // Returns array defined in config
 $response = $oAuthClient->getToken($code);
@@ -37,17 +37,17 @@ $response = $oAuthClient->refreshToken($refreshtoken);
 ```
 
 ## Config
-Example of config provided, edit values to match vendor spec:
+Example of config provided, edit values to match provider spec:
 ```php
 <?php
 
 return [
-    'vendor1' => [
+    'provider1' => [
         'client_id' => '1234',
         'client_secret' => '12345',
-        'redirect_uri' => 'https://www.example.com/oauth2/vendor1',
+        'redirect_uri' => 'https://www.example.com/oauth2/provider1',
         'token' => [
-            'url' => 'https://login.vendor.example.com/oauth2/token',
+            'url' => 'https://login.provider.example.com/oauth2/token',
             'method' => 'POST',
             'grant_type' => 'authorization_code',
             'fields' => [
@@ -58,14 +58,14 @@ return [
             'auth' => 'body',
         ],
         'refresh' => [
-            'url' => 'https://login.vendor.example.com/oauth2/token',
+            'url' => 'https://login.provider.example.com/oauth2/token',
             'method' => 'POST',
             'grant_type' => 'authorization_code',
             'fields' => "*",
             'auth' => 'body',
         ],
         'info' => [
-            'url' => 'https://login.vendor.example.com/oauth2/metadata',
+            'url' => 'https://login.provider.example.com/oauth2/metadata',
             'method' => 'GET',
             'fields' => [
                 'metadata1',
@@ -73,7 +73,7 @@ return [
             ],
         ],
     ],
-    'vendor2' => ['...'],
+    'provider2' => ['...'],
 ];
 
 ```
